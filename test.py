@@ -15,27 +15,21 @@ import sys
 import csv
 LOF_ave = 0
 from tqdm import tqdm
-#rootfolder = "/home/kaman/JAXA_database/"
-#rootfolder = "/home/natori21/JAXA_database/"
-rootfolder = "/mnt/c/Users/kamanberu88/Desktop/JAXA_database/"
-#rootfolder =r"C:\Users\kaman\Desktop\JAXA_database\\"
-dir_path = "512/jpg8k/"
 
+rootfolder = "/mnt/c/Users/kamanberu88/Desktop/JAXA_database/"
+dir_path = "512/jpg8k/"
 cuda = True
 
 
 noise = 400
 start = time.time()
 mode = 2
-# img1_path=rootfolder+dir_path+str(noise)+"/*"
+
 img1_path = rootfolder + dir_path + str(noise) + "/"
-#img2_path = rootfolder + "TCO_CST1_TM_SIM_a7351_i3438_h36000_lanczos3.bmp"
-#img2_path = rootfolder + "mapimg\\CST1\\TCO_CST1_TM_SIM_a7351_i3438_h36000_lanczos3.bmp"
 img2_path = rootfolder + "mapimg/CST1/TCO_CST1_TM_SIM_a7351_i3438_h36000_lanczos3.bmp"
 truepoint_path = rootfolder + dir_path + str(noise) + "/" + "true_point.csv"
 
-# imgファイルの名前読み込み
-# f = open(img1_path + "imgfile.txt")
+
 f = open(rootfolder + dir_path + str(noise) + "/" + "imgfile.txt")
 data = f.readlines()
 f.close()
@@ -59,10 +53,8 @@ ng_lis3 = []
 
 f3 = open("s_Matching" + str(noise) + ".csv", "w")
 img2 = cv2.imread(img2_path)
-#img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-#img2=cv2.resize(img2,(1024,1024))
 print(img2.shape)
-#cv2.imwrite('./aho.jpg',img2)
+
 mpt, sco_left, mf = cnn_feature_extract(img2,  nfeatures = -1)
 # print(mpt)  #keypoint
 #print(mf)
@@ -76,14 +68,14 @@ for l in tqdm(range(len(data))):
     print(path1)
     true_point = getTruePoint(data2)
     img1 = cv2.imread(path1)
-    #img1=cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-    #c_pt, cf = getPairs(img1, fe)
+   
+   
     c_pt_re, sco_right, cf = cnn_feature_extract(img1, nfeatures=-1,)
 
     phase = "RatioTest"
     label1 = phase
-    #c_pt, c_f, m_pt, m_f = matchRatio(c_pt, cf, mpt, mf, knn, ratio)
     c1_pt,c_f,  m_pt,m_f = matchRatio(c_pt_re, cf, mpt, mf, knn, ratio)
+    
     phase = "Ransac"
     label3 = phase
     print(len(c1_pt))
