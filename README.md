@@ -21,3 +21,23 @@ Python 3.9+ is recommended for running our code. [Conda](https://docs.conda.io/e
 - tqdm
 - SciPy
 
+## Training 
+ After setting up the folder for the dataset, the training can be started right away:
+
+ ```bash
+python train.py
+```
+
+## Testing
+After saving the trained model,the testing can be started right away:
+
+```bash
+python test.py
+```
+## Visualizing matching
+
+```bash
+python visualize.py
+```
+
+
