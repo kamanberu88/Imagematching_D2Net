@@ -15,12 +15,8 @@ import os
 # 変換を定義 (正規化やテンソルへの変換など)
 transform = transforms.Compose([
    
-    #transforms.ToTensor(),
    #transforms.RandomVerticalFlip(p=0.5),
    #transforms.RandomVerticalFlip(p=0.2),
-   #transforms.RandomAffine(
-    #degrees=[-10, 10], translate=(0.1, 0.1), scale=(0.5, 1.5)
-   #),
    #transforms.RandomHorizontalFlip(0.3),
 
     transforms.ToTensor(),
@@ -29,20 +25,7 @@ transform = transforms.Compose([
 ])
 
 
-
-#image_path1="/mnt/c/Users/kamanberu88/Desktop/jpg8k_me/400"
-#image_path1="/mnt/c/Users/kamanberu88/Desktop/croppd_images"
-#image_path2="/mnt/c/Users/kamanberu88/Desktop/JAXA_database/mapimg/CST1/TCO_CST1_TM_SIM_a7351_i3438_H36.bmp"
-#train_dataset=D2NetDataset(image_path1,image_path2,transform=transform)
-#image_path1="/mnt/c/Users/kamanberu88/Desktop/jpg8k_me/406"
-#image_path2="/mnt/c/Users/kamanberu88/Desktop/jpg8k_me/400"
-#train_dataset=D2NetDataset(image_path1,image_path2,transform=transform)
-# データセットを定義
-#train_dataset = D2NetDataset(image_dir="/home/kamanberu88/new_dataset/400/", transform=transform)
-       #save_samples=True,sample_save_dir='./add_noise_gazo/'
-#)
-#/home/kamanberu88/new_dataset/400/
-train_dataset = D2NetDataset(image_dir="/home/kamanberu88/new_dataset/400/", transform=transform,
+train_dataset = D2NetDataset(image_dir="", transform=transform,
        
 )
 print(len(train_dataset))
@@ -92,19 +75,7 @@ for epoch in range(num_epochs):
     history['loss'].append(avg_loss)
     print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {avg_loss:.4f}")
 
-    save_number=72
-    #if epoch==51:
-
-     #   torch.save(model.state_dict(), 'd2net_model_own{}_ep{}_.pth'.format(save_number,epoch))
-    #if epoch==101:
-
-     #   torch.save(model.state_dict(), 'd2net_model_own{}_ep{}_.pth'.format(save_number,epoch))
-
-    #elif epoch==151:
-      #  torch.save(model.state_dict(), 'd2net_model_own{}_ep{}_.pth'.format(save_number,epoch))
-    
-
-
+save_number=72
 
 
 torch.save(model.state_dict(), 'd2net_model_own{}.pth'.format(save_number))
