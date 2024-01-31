@@ -3,4 +3,4 @@
 ## Overview
 
 
-The main idea and code of feature extracting in this repository are based on [D2-Net](https://github.com/mihaidusmanu/d2-net).
+The main idea and code of feature extracting in this repository are based on [D2-Net](https://dusmanu.com/publications/d2-net.html).
