@@ -58,13 +58,11 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
 
         batch = {k: v.to(device) for k, v in batch.items()}
-        #outputs = model(batch)
+      
 
-        # この例では、損失関数としてMSEを使用していますが、実際のタスクや目的に応じて適切な損失関数を定義する必要があります。
-        # 例えば、一致点の一致度を計算するためのカスタム損失関数を使用する場合が考えられます。
-        #loss = criterion(outputs['dense_features1'], outputs['dense_features2'])
+   
         loss = loss_function_2D(model, batch, device, plot=False)
-        #loss=loss_function_2d(model,batch,device)
+       
 
         loss.backward()
         optimizer.step()
